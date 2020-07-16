@@ -74,7 +74,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "site": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "dev:link": "cd .. && npm link ./packages/brick-design ./packages/bricks-web ./packages/core && cd ./example && npm link brickd bricks-web brickd-core",
+    "clean:link": "cd ../packages && cd ./brick-design && npm unlink && cd ../bricks-web && npm unlink && cd ../core && npm unlink"
   },
   "eslintConfig": {
     "extends": "react-app"
