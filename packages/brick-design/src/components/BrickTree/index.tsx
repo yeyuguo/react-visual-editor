@@ -1,19 +1,19 @@
-import React, { useCallback } from 'react';
+import React, { useCallback,memo } from 'react';
 import SortTree from './SortTree';
 import styles from './index.less';
 import { clearHovered, ComponentConfigsType, ROOT, STATE_PROPS, useSelector } from 'brickd-core';
-import { onDragover, onDrop } from 'brickd';
+import {onDrop,onDragover} from '../../common/events'
 
 interface BrickTreeProps {
   className?:string
 }
-export function BrickTree(props:BrickTreeProps) {
+
+function BrickTree(props:BrickTreeProps) {
   const {componentConfigs}=useSelector<{componentConfigs:ComponentConfigsType},STATE_PROPS>(['componentConfigs'],
     (prevState,nextState)=>{
     const {componentConfigs:{[ROOT]:prevRoot}}=prevState
     const {componentConfigs:{[ROOT]:root}}=nextState
     return !!(!prevRoot && root);
-
   })
   const onMouseLeave = useCallback((e: any) => {
     e.stopPropagation();
@@ -37,3 +37,5 @@ export function BrickTree(props:BrickTreeProps) {
   );
 }
 
+
+export default memo(BrickTree)
